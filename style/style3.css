@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+.pag {
+    background-color: #bcc3ff;
+    border-radius: 2em;
+    box-shadow: 0em 0em 0.5em black;
+    padding: 2em;
+    max-width: 950px;
+}
+
+
+fieldset {
+    width: 60%;
+    margin: auto;
+    background-color: white;
+    border: solid 0.1em #8D92BF;
+    border-radius: 15px;
+    padding: 2em;
+    margin-top: 1em;
+}
+
+legend {
+    background-color: #8D92BF;
+    color: white;
+    padding: 0.3em;
+}
+
+#msg {
+    color: darkblue;
+    font-weight: bold;
+    display: none;
+}
+
+#cnpj,
+#cartao {
+    display: none;
+}
+
+h1 {
+    color: #5E617F;
+}
+
+strong {
+    color: #5E617F;
+}
+
+.contatobtn {
+    background-color: transparent;
+    color: #5E617F;
+    border: 1px solid #5E617F;
+
+}
+
+.contatobtn:hover {
+    background-color: transparent;
+    color: #5E617F;
+    cursor: default;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.finalizarbtn {
+    background-color: #8D92BF;
+    color: white;
+    border: 0;
+}
+
+.finalizarbtn:hover {
+    background-color: transparent;
+    color: #5E617F;
+    border: 1px solid #5E617F;
+}
+
+footer {
+    background-color: #5E617F;
+    margin-top: 150px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer i {
+    font-size: 1.2rem;
+}

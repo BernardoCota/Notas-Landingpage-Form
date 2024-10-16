@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="style/style3.css">
+
+  <title>Cadastre-se no OrgaNote</title>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" style="color: #5E617F; font-size: 20px; font-weight: 500;"
+          href="landingpage.html">OrgaNote</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Notas</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Funcionalidades
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Temas</a></li>
+                <li><a class="dropdown-item" href="#">Contagem de Notas</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <button class="btn btn-success contatobtn" type="submit">Contato</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container mt-5 pag">
+    <h1>Cadastre-se no <strong>OrgaNote</strong></h1>
+    <hr class="mb-5">
+    <form name="orcamento" id="orcamento" oninput="calculos(this)">
+
+      <fieldset>
+        <legend> Dados de Acesso </legend>
+
+        <div class="form-group">
+          <label for="login"> Login </label>
+          <input type="email" class="form-control" id="login" name="login" placeholder="Seu login aqui" required>
+        </div>
+
+        <div class="form-group">
+          <label for="senha1">Senha</label>
+          <input type="password" class="form-control" id="senha1" name="senha1" placeholder="Informe a sua Senha"
+            required oninput="senha()">
+        </div>
+
+        <div class="form-group">
+          <label for="senha2">Confirmar Senha</label>
+          <input type="password" class="form-control" id="senha2" name="senha2" placeholder="Confirme a sua Senha"
+            required oninput="senha()">
+        </div>
+
+        <p id="msg"> * As senhas nao conferem </p>
+      </fieldset>
+
+
+      <fieldset>
+        <legend> Dados de Pagamento </legend>
+        <div class="form-group">
+          <label for="tipo">Tipo de Acesso: </label>
+
+          <input type="radio" id="pf" name="tipo" value="Pessoa Física" checked onchange="pessoa('pf')" required>
+          <label for="pf"> Pessoa Fisica</label>
+
+          <input type="radio" id="pj" name="tipo" value="Pessoa Juridica" onchange="pessoa('pj')" required>
+          <label for="pj"> Pessoa Juridica</label>
+        </div>
+
+        <div class="form-group" id="cpf">
+          <label for="cpf">CPF</label>
+          <input type="text" class="form-control" name="cpf" placeholder="xxx.xxx.xxx-xx" onkeypress="mascara_cpf(this)"
+            onkeyup="salto(this.name,this.value)" maxlength="14" onkeydown="return somente_numero(event)" >
+        </div>
+
+        <div class="form-group" id="cnpj">
+          <label for="cnpj">CNPJ</label>
+          <input type="text" class="form-control" name="cnpj" placeholder="xx.xxx.xxx/xxxx-xx"
+            onkeypress="mascara_cnpj(this)" onkeyup="salto(this.name,this.value)" maxlength="18"
+            onkeydown="return somente_numero(event)">
+        </div>
+
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(xx)xxxxx-xxxx"
+            maxlength="14" onkeypress="mascara_tel(this)" onkeyup="salto(this.name,this.value)" required
+            onkeydown="return somente_numero(event)">
+        </div>
+
+        <div class="form-group">
+          <label for="pagamento">Forma de Pagamento</label>
+          <select class="form-control" id="pagamento" name="pagamento" onchange="abrir()" required>
+            <option value="Dinheiro"> Dinheiro </option>
+            <option value="Cartão"> Cartão </option>
+            <option value="Cheque"> Cheque </option>
+          </select>
+        </div>
+
+        <div class="form-group" id="cartao">
+          <fieldset>
+            <label for="num"> Nº do Cartão </label>
+            <input type="text" class="form-control" name="num" oninput="mascara_cartao(this)" maxlength="19">
+
+            <label for="cod"> Código de Segurança </label>
+            <input type="text" class="form-control" name="cod" oninput="mascara_cvv(this)" maxlength="3">
+
+            <label for="vencimento"> Vencimento </label>
+            <input type="text" class="form-control" name="vencimento" oninput="mascara_vencimento(this)" maxlength="5"
+              placeholder="MM/AA">
+
+          </fieldset>
+        </div>
+      </fieldset>
+
+      <div class="text-right mt-3 p-5">
+        <button type="submit" class="btn btn-primary finalizarbtn">Finalizar</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="text-light pt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Sobre o OrgaNote</h5>
+          <p>OrgaNote é uma aplicação para gerenciar suas notas e tarefas de forma prática e eficiente. Com diversas funcionalidades, nossa plataforma ajuda você a se manter organizado e produtivo.</p>
+        </div>
+  
+        <div class="col-md-4">
+          <h5>Links Rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="landingpage.html" class="text-light">Página Inicial</a></li>
+            <li><a href="index.html" class="text-light">Notas</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-md-4">
+          <h5>Contato</h5>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-geo-alt-fill"></i> Rua São José das Coves, 123, Rio de Janeiro - Rio de Janeiro</li>
+            <li><i class="bi bi-telephone-fill"></i> (21) 1234-5678</li>
+            <li><i class="bi bi-envelope-fill"></i> contato@organote.com</li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="row mt-4">
+        <div class="col text-center">
+          <p class="mb-0">&copy; 2024 OrgaNote. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+
+  <!-- JavaScript (Opcional) -->
+  <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+  <script src="script/script2.js"></script>
+</body>
+
+</html>
